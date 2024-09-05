@@ -1,66 +1,21 @@
 package com.d108.project.domain.board;
 
-import com.d108.project.domain.comment.Comment;
-import com.d108.project.domain.user.User;
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@ToString(exclude = {"user", "comments"})
-@Getter
-@Setter
-@Table(name = "board")
-@NoArgsConstructor
+@Table(name = "boards")
 public class Board {
-    // ID
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_id")
     private Long id;
 
-    // 글 제목
-    private String title;
+    // FIXME: 상권 (하나의 상권에 해당하는 하나의 게시판이 생기는 거 아님?)
 
-    // 글 내용
-    private String description;
+    // FIXME: 프랜차이즈 (이하 동일)
 
-    // 조회수
-    private Long view;
+    // 제목
+    private String subject;
 
-    // 유저와 관계 설정 (N:1) ?
-    @ManyToOne
-    @JoinColumn(name = "user_id", updatable = false)
-    private User user;
-
-    @OneToMany(mappedBy = "board")
-    private List<Comment> comments;
-
-    // 생성 및 수정
-    @Column(updatable = false)
-    private LocalDateTime createdAt;
-    @Column
-    private LocalDateTime updatedAt;
-
-    @Builder
-    public Board(String title, String description, Long view, User user) {
-        this.title = title;
-        this.description = description;
-        this.view = view;
-        this.user = user;
-    }
-
-    // 생성 및 수정 자동 설정
-    @PrePersist
-    protected void onCreate() {
-        this.updatedAt = LocalDateTime.now();
-        this.createdAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
+    // 내용
+    private String content;
 }
-
