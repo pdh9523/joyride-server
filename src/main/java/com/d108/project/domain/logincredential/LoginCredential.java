@@ -2,7 +2,9 @@ package com.d108.project.domain.logincredential;
 
 import com.d108.project.domain.member.Member;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -11,8 +13,8 @@ import java.time.LocalDateTime;
 @Table(name = "login_credentials")
 @Getter
 @Setter
+@NoArgsConstructor
 public class LoginCredential {
-
     @Id
     private Long id;
 
@@ -37,5 +39,12 @@ public class LoginCredential {
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
+    }
+
+    @Builder
+    public LoginCredential(Member member, String username, String password) {
+        this.member = member;
+        this.username = username;
+        this.password = password;
     }
 }
