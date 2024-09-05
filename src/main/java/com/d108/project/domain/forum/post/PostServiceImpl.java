@@ -1,31 +1,28 @@
-package com.d108.project.domain.post;
+package com.d108.project.domain.forum.post;
 
-import com.d108.project.domain.board.Board;
-import com.d108.project.domain.board.BoardRepository;
-import com.d108.project.domain.member.Member;
-import com.d108.project.domain.member.MemberRepository;
-import com.d108.project.domain.post.dto.PostCreateDto;
-import com.d108.project.domain.post.dto.PostResponseDto;
-import com.d108.project.domain.post.dto.PostUpdateDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.d108.project.domain.forum.board.domain.Board;
+import com.d108.project.domain.forum.post.domain.Post;
+import com.d108.project.domain.forum.post.repository.PostRepository;
+import com.d108.project.domain.forum.board.repository.BoardRepository;
+import com.d108.project.domain.member.domain.Member;
+import com.d108.project.domain.member.repository.MemberRepository;
+import com.d108.project.domain.forum.post.dto.PostCreateDto;
+import com.d108.project.domain.forum.post.dto.PostResponseDto;
+import com.d108.project.domain.forum.post.dto.PostUpdateDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
 
-    @Autowired
-    public PostServiceImpl(PostRepository postRepository, BoardRepository boardRepository, MemberRepository memberRepository) {
-        this.postRepository = postRepository;
-        this.boardRepository = boardRepository;
-        this.memberRepository = memberRepository;
-    }
 
     @Override
     public void createPost(PostCreateDto postCreateDto) {
@@ -38,7 +35,7 @@ public class PostServiceImpl implements PostService {
         Post post = Post.builder()
                 .board(board)
                 .member(member)
-                .subject(postCreateDto.getSubject())
+                .title(postCreateDto.getTitle())
                 .content(postCreateDto.getContent())
                 .build();
 
@@ -57,7 +54,7 @@ public class PostServiceImpl implements PostService {
 
     // 단일 글 조회
     @Override
-    public PostResponseDto getPostById(Long id) {
+    public PostResponseDto getPostById(Integer id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글 번호 입니다."));
         return convertToPostResponseDto(post);
@@ -65,11 +62,11 @@ public class PostServiceImpl implements PostService {
 
     // 글 수정
     @Override
-    public void updatePostById(Long id, PostUpdateDto postUpdateDto) {
+    public void updatePostById(Integer id, PostUpdateDto postUpdateDto) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글 번호 입니다."));
 
-        post.setSubject(postUpdateDto.getSubject());
+        post.setTitle(postUpdateDto.getTitle());
         post.setContent(postUpdateDto.getContent());
 
         postRepository.save(post);
@@ -77,14 +74,14 @@ public class PostServiceImpl implements PostService {
     
     // 글 삭제
     @Override
-    public void deletePostById(Long id) {
+    public void deletePostById(Integer id) {
         postRepository.deleteById(id);
     }
 
     private PostResponseDto convertToPostResponseDto(Post post) {
         return PostResponseDto.builder()
                 .id(post.getId())
-                .subject(post.getSubject())
+                .title(post.getTitle())
                 .content(post.getContent())
                 .view(post.getView())
                 .build();
