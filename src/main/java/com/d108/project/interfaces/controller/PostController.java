@@ -1,9 +1,9 @@
 package com.d108.project.interfaces.controller;
 
-import com.d108.project.domain.post.PostService;
-import com.d108.project.domain.post.dto.PostCreateDto;
-import com.d108.project.domain.post.dto.PostResponseDto;
-import com.d108.project.domain.post.dto.PostUpdateDto;
+import com.d108.project.domain.forum.post.PostService;
+import com.d108.project.domain.forum.post.dto.PostCreateDto;
+import com.d108.project.domain.forum.post.dto.PostResponseDto;
+import com.d108.project.domain.forum.post.dto.PostUpdateDto;
 import com.d108.project.interfaces.api.PostApi;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,14 +26,14 @@ public class PostController implements PostApi {
         return ResponseEntity.ok().build();
     }
     @Override
-    public ResponseEntity<Void> updatePost(Long boardId, PostUpdateDto postUpdateDto) {
+    public ResponseEntity<Void> updatePost(Integer boardId, PostUpdateDto postUpdateDto) {
         postService.updatePostById(boardId, postUpdateDto);
         // TODO: 위와 동일
         return ResponseEntity.ok().build();
     }
 
     @Override
-    public ResponseEntity<PostResponseDto> getPostById(Long boardId) {
+    public ResponseEntity<PostResponseDto> getPostById(Integer boardId) {
         return ResponseEntity.ok(postService.getPostById(boardId));
     }
 
@@ -43,7 +43,7 @@ public class PostController implements PostApi {
     }
 
     @Override
-    public ResponseEntity<Void> deletePost(Long boardId) {
+    public ResponseEntity<Void> deletePost(Integer boardId) {
         postService.deletePostById(boardId);
         return ResponseEntity.noContent().build();
     }
