@@ -1,9 +1,10 @@
-package com.d108.project.domain.post.dto;
+package com.d108.project.domain.forum.post.dto;
 
 import lombok.Getter;
 
 @Getter
 public class PostUpdateDto {
-    private String subject;
+    private String title;
+
     private String content;
 }
