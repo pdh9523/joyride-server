@@ -71,7 +71,7 @@ public class MemberServiceImpl implements MemberService {
                 .collect(Collectors.toList());
     }
 
-    public MemberResponseDto convertToResponseDto(Member member) {
+    private MemberResponseDto convertToResponseDto(Member member) {
         return MemberResponseDto.builder()
                 .id(member.getId())
                 .username(member.getLoginCredential().getUsername())

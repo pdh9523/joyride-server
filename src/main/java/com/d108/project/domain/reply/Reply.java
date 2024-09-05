@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Setter
 @Table(name = "replys")
 public class Reply {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +16,7 @@ public class Reply {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "login_cretdnetial_id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @Column(updatable = false)

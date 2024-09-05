@@ -1,6 +1,7 @@
-package com.d108.project.domain.post;
+package com.d108.project.domain.salestorepost;
 
 import com.d108.project.config.enums.MainAgeArea;
+import com.d108.project.domain.post.Post;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +9,6 @@ import lombok.Setter;
 @Entity
 @Table(name = "sale_store_posts")
 @Getter
-@Setter
 public class SaleStorePost {
     @Id
     private Long id;

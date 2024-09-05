@@ -21,7 +21,7 @@ public class FranchiseEvaluation {
     private Franchise franchise;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "login_credential_id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @Enumerated(EnumType.STRING)

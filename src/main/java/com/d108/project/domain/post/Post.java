@@ -2,16 +2,20 @@ package com.d108.project.domain.post;
 
 import com.d108.project.domain.board.Board;
 import com.d108.project.domain.member.Member;
+import com.d108.project.domain.salestorepost.SaleStorePost;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "posts")
 @Getter
 @Setter
+@Table(name = "posts")
+@NoArgsConstructor
 public class Post {
     // 게시글 PK
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +29,7 @@ public class Post {
 
     // 회원 PK - FK
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "login_credentials_id", updatable = false)
+    @JoinColumn(name = "member_id", updatable = false)
     private Member member;
 
     // 제목
@@ -33,6 +37,9 @@ public class Post {
 
     // 내용
     private String content;
+
+    // 조회수
+    private Long view;
 
     // 판매 글
     // OrphanRemoval: 연결이 끊어지면 제거
@@ -52,5 +59,14 @@ public class Post {
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
+    }
+
+    @Builder
+    public Post(Board board, Member member, String subject, String content) {
+        this.board = board;
+        this.member = member;
+        this.subject = subject;
+        this.content = content;
+        this.view = 0L;
     }
 }
