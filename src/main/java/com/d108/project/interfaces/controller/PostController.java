@@ -1,6 +1,6 @@
 package com.d108.project.interfaces.controller;
 
-import com.d108.project.domain.forum.post.PostService;
+import com.d108.project.domain.forum.post.service.PostService;
 import com.d108.project.domain.forum.post.dto.PostCreateDto;
 import com.d108.project.domain.forum.post.dto.PostResponseDto;
 import com.d108.project.domain.forum.post.dto.PostUpdateDto;
