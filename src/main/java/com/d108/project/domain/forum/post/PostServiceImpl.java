@@ -23,9 +23,9 @@ public class PostServiceImpl implements PostService {
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
 
-
+    // 글 작성
     @Override
-    public void createPost(PostCreateDto postCreateDto) {
+    public Integer createPost(PostCreateDto postCreateDto) {
         Board board = boardRepository.findById(postCreateDto.getBoardId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시판입니다."));
 
@@ -40,6 +40,8 @@ public class PostServiceImpl implements PostService {
                 .build();
 
         postRepository.save(post);
+
+        return post.getId();
     }
 
     // 전체 글 조회
@@ -48,7 +50,7 @@ public class PostServiceImpl implements PostService {
         List<Post> posts = postRepository.findAll();
 
         return posts.stream()
-                .map(this::convertToPostResponseDto)
+                .map(PostResponseDto::from)
                 .collect(Collectors.toList());
     }
 
@@ -57,7 +59,7 @@ public class PostServiceImpl implements PostService {
     public PostResponseDto getPostById(Integer id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글 번호 입니다."));
-        return convertToPostResponseDto(post);
+        return PostResponseDto.from(post);
     }
 
     // 글 수정
@@ -76,14 +78,5 @@ public class PostServiceImpl implements PostService {
     @Override
     public void deletePostById(Integer id) {
         postRepository.deleteById(id);
-    }
-
-    private PostResponseDto convertToPostResponseDto(Post post) {
-        return PostResponseDto.builder()
-                .id(post.getId())
-                .title(post.getTitle())
-                .content(post.getContent())
-                .view(post.getView())
-                .build();
     }
 }

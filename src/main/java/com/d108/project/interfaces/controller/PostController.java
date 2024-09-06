@@ -12,7 +12,9 @@ import com.d108.project.interfaces.api.PostApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -24,10 +26,17 @@ public class PostController implements PostApi {
 
     @Override
     public ResponseEntity<Void> createPost(PostCreateDto postCreateDto) {
-        postService.createPost(postCreateDto);
-        // TODO: createPost 에서 글 번호 받아서, 글 번호로 redirect URL 전달하기
-        return ResponseEntity.ok().build();
+        Integer postId = postService.createPost(postCreateDto);
+
+        // createPost 에서 글 번호 받아서, 글 번호로 redirect URL 전달하기
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{postId}")
+                .buildAndExpand(postId)
+                .toUri();
+
+        return ResponseEntity.created(location).build();
     }
+
     @Override
     public ResponseEntity<Void> updatePost(Integer postId, PostUpdateDto postUpdateDto) {
         postService.updatePostById(postId, postUpdateDto);

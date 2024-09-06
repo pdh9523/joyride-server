@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface PostService {
 
-    void createPost(PostCreateDto postCreateDto);
+    Integer createPost(PostCreateDto postCreateDto);
 
     List<PostResponseDto> getAllPosts();
 
