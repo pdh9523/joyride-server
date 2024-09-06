@@ -11,15 +11,8 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    // FIXME: 상권 (하나의 상권에 해당하는 하나의 게시판이 생기는 거 아님?)
+    // TODO: 상권, 프랜차이즈 - 게시판 연결
     private Integer businessAreaId;
-    // FIXME: 프랜차이즈 (이하 동일)
 
     private Integer franchiseId;
-
-    // 제목
-    private String title;
-
-    // 내용
-    private String content;
 }
