@@ -62,15 +62,7 @@ public class MemberServiceImpl implements MemberService {
         List<Member> members = memberRepository.findAll();
 
         return members.stream()
-                .map(this::convertToResponseDto)
+                .map(MemberResponseDto::from)
                 .collect(Collectors.toList());
-    }
-
-    private MemberResponseDto convertToResponseDto(Member member) {
-        return MemberResponseDto.builder()
-                .id(member.getId())
-                .username(member.getUsername())
-                .nickname(member.getNickname())
-                .build();
     }
 }
