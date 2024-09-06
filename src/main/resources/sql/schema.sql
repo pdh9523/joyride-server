@@ -27,8 +27,6 @@ CREATE TABLE `boards` (
                           `id`	INTEGER	NOT NULL AUTO_INCREMENT	COMMENT 'Auto',
                           `business_area_id`	INTEGER	NOT NULL	COMMENT 'Auto',
                           `franchise_id`	INTEGER	NOT NULL	COMMENT 'Auto',
-                          `title`	VARCHAR(255)	NOT NULL,
-                          `content`	VARCHAR(255)	NULL,
                           PRIMARY KEY (`id`)
 );
 
