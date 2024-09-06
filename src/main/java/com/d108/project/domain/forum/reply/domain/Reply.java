@@ -5,6 +5,7 @@ import com.d108.project.domain.forum.board.domain.Board;
 import com.d108.project.domain.forum.post.domain.Post;
 import com.d108.project.domain.member.domain.Member;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -26,4 +27,11 @@ public class Reply extends BaseTimeEntity {
     private Post post;
 
     private String content;
+
+    @Builder
+    public Reply(Member member, Post post, String content) {
+        this.member = member;
+        this.post = post;
+
+    }
 }
