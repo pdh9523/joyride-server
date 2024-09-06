@@ -2,6 +2,7 @@ package com.d108.project.domain.forum.post;
 
 import com.d108.project.domain.forum.board.domain.Board;
 import com.d108.project.domain.forum.post.domain.Post;
+import com.d108.project.domain.forum.post.dto.PostDeleteDto;
 import com.d108.project.domain.forum.post.repository.PostRepository;
 import com.d108.project.domain.forum.board.repository.BoardRepository;
 import com.d108.project.domain.member.domain.Member;
@@ -9,7 +10,9 @@ import com.d108.project.domain.member.repository.MemberRepository;
 import com.d108.project.domain.forum.post.dto.PostCreateDto;
 import com.d108.project.domain.forum.post.dto.PostResponseDto;
 import com.d108.project.domain.forum.post.dto.PostUpdateDto;
+import jakarta.persistence.Access;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -68,6 +71,13 @@ public class PostServiceImpl implements PostService {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글 번호 입니다."));
 
+        Member member = memberRepository.findById(postUpdateDto.getMemberId())
+                        .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+
+        if (!member.equals(post.getMember())) {
+            throw new AccessDeniedException("본인의 글만 수정할 수 있습니다.");
+        }
+
         post.setTitle(postUpdateDto.getTitle());
         post.setContent(postUpdateDto.getContent());
 
@@ -76,7 +86,16 @@ public class PostServiceImpl implements PostService {
     
     // 글 삭제
     @Override
-    public void deletePostById(Integer id) {
-        postRepository.deleteById(id);
+    public void deletePostById(Integer postId, PostDeleteDto postDeleteDto) {
+        Post post = postRepository.findById(postId)
+                        .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
+        Member member = memberRepository.findById(postDeleteDto.getMemberId())
+                        .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+
+        if (!member.equals(post.getMember())) {
+            throw new AccessDeniedException("본인의 글만 삭제하실 수 있습니다.");
+        }
+
+        postRepository.deleteById(postId);
     }
 }

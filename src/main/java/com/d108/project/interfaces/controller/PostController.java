@@ -2,6 +2,7 @@ package com.d108.project.interfaces.controller;
 
 import com.d108.project.domain.forum.post.PostService;
 import com.d108.project.domain.forum.post.dto.PostCreateDto;
+import com.d108.project.domain.forum.post.dto.PostDeleteDto;
 import com.d108.project.domain.forum.post.dto.PostResponseDto;
 import com.d108.project.domain.forum.post.dto.PostUpdateDto;
 import com.d108.project.domain.forum.reply.ReplyService;
@@ -40,7 +41,6 @@ public class PostController implements PostApi {
     @Override
     public ResponseEntity<Void> updatePost(Integer postId, PostUpdateDto postUpdateDto) {
         postService.updatePostById(postId, postUpdateDto);
-        // TODO: 위와 동일
         return ResponseEntity.ok().build();
     }
 
@@ -55,8 +55,8 @@ public class PostController implements PostApi {
     }
 
     @Override
-    public ResponseEntity<Void> deletePost(Integer postId) {
-        postService.deletePostById(postId);
+    public ResponseEntity<Void> deletePost(Integer postId, PostDeleteDto postDeleteDto) {
+        postService.deletePostById(postId,postDeleteDto);
         return ResponseEntity.noContent().build();
     }
 

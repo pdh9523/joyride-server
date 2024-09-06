@@ -3,8 +3,6 @@ package com.d108.project.domain.forum.post.dto;
 import lombok.Getter;
 
 @Getter
-public class PostUpdateDto {
+public class PostDeleteDto {
     private Integer memberId;
-    private String title;
-    private String content;
 }

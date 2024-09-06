@@ -1,5 +1,6 @@
 package com.d108.project.domain.forum.post;
 
+import com.d108.project.domain.forum.post.dto.PostDeleteDto;
 import com.d108.project.domain.forum.post.dto.PostUpdateDto;
 import com.d108.project.domain.forum.post.dto.PostCreateDto;
 import com.d108.project.domain.forum.post.dto.PostResponseDto;
@@ -16,5 +17,5 @@ public interface PostService {
 
     void updatePostById(Integer id, PostUpdateDto postUpdateDto);
 
-    void deletePostById(Integer id);
+    void deletePostById(Integer postId, PostDeleteDto postDeleteDto);
 }

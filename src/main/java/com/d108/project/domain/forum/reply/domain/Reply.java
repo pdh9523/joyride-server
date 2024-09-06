@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 @Table(name = "replies")
 public class Reply extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reply_id")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -11,6 +11,7 @@ import com.d108.project.domain.forum.reply.repository.ReplyRepository;
 import com.d108.project.domain.member.domain.Member;
 import com.d108.project.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -66,8 +67,14 @@ public class ReplyServiceImpl implements ReplyService {
         Reply reply = replyRepository.findById(replyId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 댓글입니다."));
 
-        reply.setContent(replyUpdateDto.getContent());
+        Member member = memberRepository.findById(replyUpdateDto.getMemberId())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
 
+        if (!member.equals(reply.getMember())) {
+            throw new AccessDeniedException("본인의 댓글만 수정할 수 있습니다.");
+        }
+
+        reply.setContent(replyUpdateDto.getContent());
         replyRepository.save(reply);
     }
 

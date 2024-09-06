@@ -15,10 +15,4 @@ public class Board {
     private Integer businessAreaId;
 
     private Integer franchiseId;
-
-    // 제목
-    private String title;
-
-    // 내용
-    private String content;
 }

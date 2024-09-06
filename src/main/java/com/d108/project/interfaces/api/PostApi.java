@@ -1,6 +1,7 @@
 package com.d108.project.interfaces.api;
 
 import com.d108.project.domain.forum.post.dto.PostCreateDto;
+import com.d108.project.domain.forum.post.dto.PostDeleteDto;
 import com.d108.project.domain.forum.post.dto.PostResponseDto;
 import com.d108.project.domain.forum.post.dto.PostUpdateDto;
 import com.d108.project.domain.forum.reply.dto.ReplyByPostIdResponseDto;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// TODO: 얘네 분리해야겠지..? 근데 어케 함
 @RequestMapping("/posts")
 public interface PostApi {
 
@@ -27,7 +29,7 @@ public interface PostApi {
     ResponseEntity<Void> updatePost(@PathVariable("postId") Integer postId, @RequestBody PostUpdateDto postUpdateDto);
 
     @DeleteMapping("/{postId}")
-    ResponseEntity<Void> deletePost(@PathVariable("postId") Integer postId);
+    ResponseEntity<Void> deletePost(@PathVariable("postId") Integer postId, @RequestBody PostDeleteDto postDeleteDto);
 
     @PostMapping("/{postId}/replies")
     ResponseEntity<Void> createReply(@PathVariable("postId") Integer postId, @RequestBody ReplyCreateDto replyCreateDto);
