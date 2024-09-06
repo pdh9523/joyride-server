@@ -26,10 +26,10 @@ public interface PostApi {
     ResponseEntity<Void> createPost(@RequestBody PostCreateDto postCreateDto);
 
     @PutMapping("/{postId}")
-    ResponseEntity<Void> updatePost(@PathVariable("postId") Integer postId, @RequestBody PostUpdateDto postUpdateDto);
+    ResponseEntity<Void> updatePost(@PathVariable("postId") Integer postId, @RequestParam Integer memberId, @RequestBody PostUpdateDto postUpdateDto);
 
     @DeleteMapping("/{postId}")
-    ResponseEntity<Void> deletePost(@PathVariable("postId") Integer postId, @RequestBody PostDeleteDto postDeleteDto);
+    ResponseEntity<Void> deletePost(@PathVariable("postId") Integer postId, @RequestParam Integer memberId);
 
     @PostMapping("/{postId}/replies")
     ResponseEntity<Void> createReply(@PathVariable("postId") Integer postId, @RequestBody ReplyCreateDto replyCreateDto);

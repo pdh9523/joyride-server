@@ -39,8 +39,8 @@ public class PostController implements PostApi {
     }
 
     @Override
-    public ResponseEntity<Void> updatePost(Integer postId, PostUpdateDto postUpdateDto) {
-        postService.updatePostById(postId, postUpdateDto);
+    public ResponseEntity<Void> updatePost(Integer postId, Integer memberId, PostUpdateDto postUpdateDto) {
+        postService.updatePostById(postId, memberId, postUpdateDto);
         return ResponseEntity.ok().build();
     }
 
@@ -55,8 +55,8 @@ public class PostController implements PostApi {
     }
 
     @Override
-    public ResponseEntity<Void> deletePost(Integer postId, PostDeleteDto postDeleteDto) {
-        postService.deletePostById(postId,postDeleteDto);
+    public ResponseEntity<Void> deletePost(Integer postId, Integer memberId) {
+        postService.deletePostById(postId, memberId);
         return ResponseEntity.noContent().build();
     }
 

@@ -67,11 +67,11 @@ public class PostServiceImpl implements PostService {
 
     // 글 수정
     @Override
-    public void updatePostById(Integer id, PostUpdateDto postUpdateDto) {
-        Post post = postRepository.findById(id)
+    public void updatePostById(Integer postId, Integer memberId, PostUpdateDto postUpdateDto) {
+        Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글 번호 입니다."));
 
-        Member member = memberRepository.findById(postUpdateDto.getMemberId())
+        Member member = memberRepository.findById(memberId)
                         .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
 
         if (!member.equals(post.getMember())) {
@@ -86,10 +86,10 @@ public class PostServiceImpl implements PostService {
     
     // 글 삭제
     @Override
-    public void deletePostById(Integer postId, PostDeleteDto postDeleteDto) {
+    public void deletePostById(Integer postId, Integer memberId) {
         Post post = postRepository.findById(postId)
                         .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
-        Member member = memberRepository.findById(postDeleteDto.getMemberId())
+        Member member = memberRepository.findById(memberId)
                         .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
 
         if (!member.equals(post.getMember())) {

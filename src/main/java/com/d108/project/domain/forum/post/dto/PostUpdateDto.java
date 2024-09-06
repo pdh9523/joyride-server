@@ -4,7 +4,6 @@ import lombok.Getter;
 
 @Getter
 public class PostUpdateDto {
-    private Integer memberId;
     private String title;
     private String content;
 }
