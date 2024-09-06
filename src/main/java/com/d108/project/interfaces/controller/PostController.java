@@ -4,20 +4,23 @@ import com.d108.project.domain.forum.post.PostService;
 import com.d108.project.domain.forum.post.dto.PostCreateDto;
 import com.d108.project.domain.forum.post.dto.PostResponseDto;
 import com.d108.project.domain.forum.post.dto.PostUpdateDto;
+import com.d108.project.domain.forum.reply.ReplyService;
+import com.d108.project.domain.forum.reply.dto.ReplyByPostIdResponseDto;
+import com.d108.project.domain.forum.reply.dto.ReplyCreateDto;
+import com.d108.project.domain.forum.reply.dto.ReplyUpdateDto;
 import com.d108.project.interfaces.api.PostApi;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class PostController implements PostApi {
 
     private final PostService postService;
-
-    public PostController(PostService postService) {
-        this.postService = postService;
-    }
+    private final ReplyService replyService;
 
     @Override
     public ResponseEntity<Void> createPost(PostCreateDto postCreateDto) {
@@ -26,15 +29,15 @@ public class PostController implements PostApi {
         return ResponseEntity.ok().build();
     }
     @Override
-    public ResponseEntity<Void> updatePost(Integer boardId, PostUpdateDto postUpdateDto) {
-        postService.updatePostById(boardId, postUpdateDto);
+    public ResponseEntity<Void> updatePost(Integer postId, PostUpdateDto postUpdateDto) {
+        postService.updatePostById(postId, postUpdateDto);
         // TODO: 위와 동일
         return ResponseEntity.ok().build();
     }
 
     @Override
-    public ResponseEntity<PostResponseDto> getPostById(Integer boardId) {
-        return ResponseEntity.ok(postService.getPostById(boardId));
+    public ResponseEntity<PostResponseDto> getPostById(Integer postId) {
+        return ResponseEntity.ok(postService.getPostById(postId));
     }
 
     @Override
@@ -43,8 +46,31 @@ public class PostController implements PostApi {
     }
 
     @Override
-    public ResponseEntity<Void> deletePost(Integer boardId) {
-        postService.deletePostById(boardId);
+    public ResponseEntity<Void> deletePost(Integer postId) {
+        postService.deletePostById(postId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @Override
+    public ResponseEntity<Void> createReply(Integer postId, ReplyCreateDto replyCreateDto) {
+        replyService.createReply(postId, replyCreateDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
+    public ResponseEntity<List<ReplyByPostIdResponseDto>> getAllReplyByPostId(Integer postId) {
+        return ResponseEntity.ok(replyService.getAllReplyByPostId(postId));
+    }
+
+    @Override
+    public ResponseEntity<Void> updateReply(Integer postId, Integer replyId, ReplyUpdateDto replyUpdateDto) {
+        replyService.updateReply(replyId, replyUpdateDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteReply(Integer postId, Integer replyId) {
+        replyService.deleteReply(replyId);
         return ResponseEntity.noContent().build();
     }
 }

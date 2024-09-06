@@ -5,6 +5,5 @@ import lombok.Getter;
 @Getter
 public class ReplyCreateDto {
     private Integer memberId;
-    private Integer postId;
     private String content;
 }

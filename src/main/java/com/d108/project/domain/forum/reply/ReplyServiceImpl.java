@@ -25,11 +25,11 @@ public class ReplyServiceImpl implements ReplyService {
     private final PostRepository postRepository;
 
     @Override
-    public void createReply(ReplyCreateDto replyCreateDto) {
+    public void createReply(Integer postId, ReplyCreateDto replyCreateDto) {
         Member member = memberRepository.findById(replyCreateDto.getMemberId())
                 .orElseThrow(() -> new IllegalArgumentException("존재 하지 않는 사용자 입니다."));
 
-        Post post = postRepository.findById(replyCreateDto.getPostId())
+        Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
 
         Reply reply = Reply.builder()
@@ -42,7 +42,7 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<ReplyByPostIdResponseDto> getReplyByPostId(Integer postId) {
+    public List<ReplyByPostIdResponseDto> getAllReplyByPostId(Integer postId) {
         List<Reply> replyList = replyRepository.findAllByPostId(postId)
                 .orElseThrow(() -> new IllegalArgumentException("댓글이 없습니다."));
 
@@ -52,7 +52,7 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public List<ReplyByMemberIdResponseDto> getReplyByMemberId(Integer memberId) {
+    public List<ReplyByMemberIdResponseDto> getAllReplyByMemberId(Integer memberId) {
         List<Reply> replyList = replyRepository.findAllByMemberId(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("댓글이 없습니다."));
 
