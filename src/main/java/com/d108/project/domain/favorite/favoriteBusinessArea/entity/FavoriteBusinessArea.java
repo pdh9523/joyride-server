@@ -25,4 +25,10 @@ public class FavoriteBusinessArea {
     @JoinColumn(name = "business_area_id")
     private BusinessArea businessArea;
 
+    public static FavoriteBusinessArea toFavoriteBusinessArea(Member member, BusinessArea businessArea) {
+        FavoriteBusinessArea quiz = new FavoriteBusinessArea();
+        quiz.setMember(member);
+        quiz.setBusinessArea(businessArea);
+        return quiz;
+    }
 }
