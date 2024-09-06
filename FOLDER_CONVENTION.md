@@ -4,44 +4,53 @@
 project/
 ├── src/
 │   ├── config/
-|   |   ├── security/
+│   │   ├── security/
 │   │   │   ├── jwtConfiguration.java
 │   │   │   └── securityConfiguration.java
 │   │   ├── WebConfiguration.java       # Web configuration
 │   │   └── SwaggerConfiguration.java   # Swagger configuration
 │   ├── domain/
 │   │   ├── user/
-│   │   │   ├── User.java                # Entity
-│   │   │   ├── UserDto.java             # DTO
-│   │   │   ├── UserRepository.java      # Repository Interface
-│   │   │   ├── UserService.java         # Service Interface
-│   │   │   └── UserServiceImpl.java     # Service Implementation
+│   │   │   ├── entity/
+│   │   │   │   └── User.java            # User Entity
+│   │   │   ├── dto/
+│   │   │   │   └── UserDto.java         # User DTO
+│   │   │   ├── repository/
+│   │   │   │   └── UserRepository.java  # User Repository Interface
+│   │   │   ├── service/
+│   │   │   │   ├── UserService.java     # User Service Interface
+│   │   │   │   └── UserServiceImpl.java # User Service Implementation
 │   │   ├── product/
-│   │   │   ├── Product.java             # Entity
-│   │   │   ├── ProductDto.java          # DTO
-│   │   │   ├── ProductRepository.java   # Repository Interface
-│   │   │   ├── ProductService.java      # Service Interface
-│   │   │   └── ProductServiceImpl.java  # Service Implementation
-│   │   └── order/
-│   │       ├── Order.java               # Entity
-│   │       ├── OrderDto.java            # DTO
-│   │       ├── OrderRepository.java     # Repository Interface
-│   │       ├── OrderService.java        # Service Interface
-│   │       └── OrderServiceImpl.java    # Service Implementation
+│   │   │   ├── entity/
+│   │   │   │   └── Product.java         # Product Entity
+│   │   │   ├── dto/
+│   │   │   │   └── ProductDto.java      # Product DTO
+│   │   │   ├── repository/
+│   │   │   │   └── ProductRepository.java # Product Repository Interface
+│   │   │   ├── service/
+│   │   │   │   ├── ProductService.java  # Product Service Interface
+│   │   │   │   └── ProductServiceImpl.java # Product Service Implementation
+│   │   ├── order/
+│   │   │   ├── entity/
+│   │   │   │   └── Order.java           # Order Entity
+│   │   │   ├── dto/
+│   │   │   │   └── OrderDto.java        # Order DTO
+│   │   │   ├── repository/
+│   │   │   │   └── OrderRepository.java # Order Repository Interface
+│   │   │   ├── service/
+│   │   │   │   ├── OrderService.java    # Order Service Interface
+│   │   │   │   └── OrderServiceImpl.java # Order Service Implementation
 │   └── interfaces/
-│       ├── controllers/
-│       │   ├── UserController.java   # Controller for User
-│       │   ├── ProductController.java  # Controller for Product
-│       │   └── OrderController.java  # Controller for Order
+│       ├── controller/
+│       │   ├── UserController.java      # Controller for User
+│       │   ├── ProductController.java   # Controller for Product
+│       │   └── OrderController.java     # Controller for Order
 │       └── api/
-│       │   ├── UserApi.java   # API for User
-│       │   ├── ProductApi.java  # API for Product
-│       │   └── OrderApi.java  # API for Order
-|       └── advice/
-│           └── AdviceController.java  # Controller Advice
-├── tests/
-├── config/
-│   ├── WebConfiguration.java       # Web configuration
-│   └── SwaggerConfiguration.java   # Swagger configuration
+│       │   ├── UserApi.java             # API for User
+│       │   ├── ProductApi.java          # API for Product
+│       │   └── OrderApi.java            # API for Order
+│       └── advice/
+│           └── AdviceController.java    # Controller Advice
+├── test/
 └── docs/
 ```
