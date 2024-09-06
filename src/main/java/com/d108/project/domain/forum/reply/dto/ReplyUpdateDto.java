@@ -4,6 +4,5 @@ import lombok.Getter;
 
 @Getter
 public class ReplyUpdateDto {
-    private Integer memberId;
     private String content;
 }

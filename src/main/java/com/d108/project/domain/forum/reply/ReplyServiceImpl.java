@@ -41,7 +41,7 @@ public class ReplyServiceImpl implements ReplyService {
 
         replyRepository.save(reply);
     }
-
+    // 글 기준으로 전체 댓글 조회
     @Override
     public List<ReplyByPostIdResponseDto> getAllReplyByPostId(Integer postId) {
         List<Reply> replyList = replyRepository.findAllByPostId(postId)
@@ -51,7 +51,7 @@ public class ReplyServiceImpl implements ReplyService {
                 .map(ReplyByPostIdResponseDto::from)
                 .collect(Collectors.toList());
     }
-
+    // 유저 기준으로 전체 댓글 조회
     @Override
     public List<ReplyByMemberIdResponseDto> getAllReplyByMemberId(Integer memberId) {
         List<Reply> replyList = replyRepository.findAllByMemberId(memberId)
@@ -63,11 +63,11 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public void updateReply(Integer replyId, ReplyUpdateDto replyUpdateDto) {
+    public void updateReply(Integer replyId, Integer memberId, ReplyUpdateDto replyUpdateDto) {
         Reply reply = replyRepository.findById(replyId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 댓글입니다."));
 
-        Member member = memberRepository.findById(replyUpdateDto.getMemberId())
+        Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
 
         if (!member.equals(reply.getMember())) {
@@ -79,7 +79,17 @@ public class ReplyServiceImpl implements ReplyService {
     }
 
     @Override
-    public void deleteReply(Integer replyId) {
+    public void deleteReply(Integer replyId, Integer memberId) {
+        Reply reply = replyRepository.findById(replyId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 댓글입니다."));
+
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 회원입니다."));
+
+        if (!member.equals(reply.getMember())) {
+            throw new AccessDeniedException("본인의 댓글만 삭제할 수 있습니다.");
+        }
+
         replyRepository.deleteById(replyId);
     }
 }

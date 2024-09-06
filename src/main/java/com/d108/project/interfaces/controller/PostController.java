@@ -72,14 +72,14 @@ public class PostController implements PostApi {
     }
 
     @Override
-    public ResponseEntity<Void> updateReply(Integer postId, Integer replyId, ReplyUpdateDto replyUpdateDto) {
-        replyService.updateReply(replyId, replyUpdateDto);
+    public ResponseEntity<Void> updateReply(Integer postId, Integer replyId, Integer memberId, ReplyUpdateDto replyUpdateDto) {
+        replyService.updateReply(replyId, memberId, replyUpdateDto);
         return ResponseEntity.ok().build();
     }
 
     @Override
-    public ResponseEntity<Void> deleteReply(Integer postId, Integer replyId) {
-        replyService.deleteReply(replyId);
+    public ResponseEntity<Void> deleteReply(Integer postId, Integer replyId, Integer memberId) {
+        replyService.deleteReply(replyId, memberId);
         return ResponseEntity.noContent().build();
     }
 }

@@ -38,8 +38,8 @@ public interface PostApi {
     ResponseEntity<List<ReplyByPostIdResponseDto>> getAllReplyByPostId(@PathVariable("postId") Integer postId);
 
     @PutMapping("/{postId}/replies/{replyId}")
-    ResponseEntity<Void> updateReply(@PathVariable("postId") Integer postId, @PathVariable("replyId") Integer replyId, @RequestBody ReplyUpdateDto replyUpdateDto);
+    ResponseEntity<Void> updateReply(@PathVariable("postId") Integer postId, @PathVariable("replyId") Integer replyId, @RequestParam Integer memberId, @RequestBody ReplyUpdateDto replyUpdateDto);
 
     @DeleteMapping("/{postId}/replies/{replyId}")
-    ResponseEntity<Void> deleteReply(@PathVariable("postId") Integer postId, @PathVariable("replyId") Integer replyId);
+    ResponseEntity<Void> deleteReply(@PathVariable("postId") Integer postId, @PathVariable("replyId") Integer replyId, @RequestParam Integer memberId);
 }

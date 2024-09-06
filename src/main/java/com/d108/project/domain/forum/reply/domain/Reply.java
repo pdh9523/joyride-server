@@ -35,5 +35,6 @@ public class Reply extends BaseTimeEntity {
     public Reply(Member member, Post post, String content) {
         this.member = member;
         this.post = post;
+        this.content = content;
     }
 }

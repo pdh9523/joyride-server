@@ -17,7 +17,7 @@ public interface ReplyService {
     // 얘는 어디로 붙이지 (MemberApi vs PostApi)
     List<ReplyByMemberIdResponseDto> getAllReplyByMemberId(Integer memberId);
 
-    void updateReply(Integer replyId, ReplyUpdateDto replyUpdateDto);
+    void updateReply(Integer replyId, Integer memberId, ReplyUpdateDto replyUpdateDto);
 
-    void deleteReply(Integer replyId);
+    void deleteReply(Integer replyId, Integer memberId);
 }
