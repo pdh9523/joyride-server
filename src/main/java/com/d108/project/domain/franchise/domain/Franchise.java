@@ -1,6 +1,6 @@
-package com.d108.project.domain.businessarea;
+package com.d108.project.domain.franchise.domain;
 
-import com.d108.project.domain.favorite.favoriteBusinessArea.domain.FavoriteBusinessArea;
+import com.d108.project.domain.favorite.favoriteFranchise.domain.FavoriteFranchise;
 import com.d108.project.domain.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -16,18 +16,18 @@ import java.util.Set;
 @Getter
 @Setter(value = AccessLevel.PROTECTED)
 @Entity
-@Table(name = "business_areas")
-public class BusinessArea {
+@Table(name = "franchises")
+public class Franchise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
-    // 주소
+
+    // 이름
     private String name;
-    
-    // 설명
+
+    // 이름
     private String description;
 
-    @OneToMany(mappedBy = "businessArea")
-    private List<FavoriteBusinessArea> FavoriteBusinessAreas = new ArrayList<>();
+    @OneToMany(mappedBy = "franchise")
+    private List<FavoriteFranchise> FavoriteFranchises = new ArrayList<>();
 }

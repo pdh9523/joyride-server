@@ -1,13 +1,15 @@
 package com.d108.project.domain.member;
 
 
-import com.d108.project.domain.logincredential.LoginCredential;
-import com.d108.project.domain.logincredential.LoginCredentialRepository;
+import com.d108.project.domain.logincredential.domain.LoginCredential;
+import com.d108.project.domain.logincredential.repository.LoginCredentialRepository;
+import com.d108.project.domain.member.domain.Member;
 import com.d108.project.domain.member.dto.MemberLoginDto;
 import com.d108.project.domain.member.dto.MemberRegisterDto;
 import com.d108.project.domain.member.dto.MemberResponseDto;
+import com.d108.project.domain.member.repository.MemberRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,17 +18,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepository;
     private final LoginCredentialRepository loginCredentialRepository;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-    @Autowired
-    public MemberServiceImpl(MemberRepository memberRepository, LoginCredentialRepository loginCredentialRepository) {
-        this.memberRepository = memberRepository;
-        this.loginCredentialRepository = loginCredentialRepository;
-    }
 
     @Override
     @Transactional
@@ -37,13 +34,9 @@ public class MemberServiceImpl implements MemberService {
                 .password(passwordEncoder.encode(memberRegisterDto.getPassword()))
                 .build();
 
-        Member member = Member.builder()
-                .nickname(memberRegisterDto.getNickname())
-                .loginCredential(loginCredential)
-                .build();
+        Member member = Member.createMember(memberRegisterDto);
 
-        loginCredential.setMember(member);
-
+        loginCredentialRepository.save(loginCredential);
         memberRepository.save(member);
     }
 
@@ -52,10 +45,12 @@ public class MemberServiceImpl implements MemberService {
         LoginCredential loginCredential = loginCredentialRepository.findByUsername(memberLoginDto.getUsername())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 아이디 입니다."));
 
+        Member member = memberRepository.findById(loginCredential.getId()).orElseThrow(() -> new IllegalArgumentException("아이디가 없습니다."));
+
         if (passwordEncoder.matches(memberLoginDto.getPassword(), loginCredential.getPassword())) {
             return MemberResponseDto.builder()
                     .username(loginCredential.getUsername())
-                    .nickname(loginCredential.getMember().getNickname())
+                    .nickname(member.getNickname())
                     .build();
         } else {
             throw new IllegalArgumentException("비밀번호가 올바르지 않습니다.");
@@ -74,7 +69,7 @@ public class MemberServiceImpl implements MemberService {
     private MemberResponseDto convertToResponseDto(Member member) {
         return MemberResponseDto.builder()
                 .id(member.getId())
-                .username(member.getLoginCredential().getUsername())
+                .username(member.getUsername())
                 .nickname(member.getNickname())
                 .build();
     }
