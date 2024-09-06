@@ -7,15 +7,19 @@ import com.d108.project.domain.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
+@Setter
+@NoArgsConstructor
 @Table(name = "replies")
 public class Reply extends BaseTimeEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "reply_id")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -32,6 +36,5 @@ public class Reply extends BaseTimeEntity {
     public Reply(Member member, Post post, String content) {
         this.member = member;
         this.post = post;
-
     }
 }

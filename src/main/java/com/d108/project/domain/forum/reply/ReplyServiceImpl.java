@@ -6,6 +6,7 @@ import com.d108.project.domain.forum.reply.domain.Reply;
 import com.d108.project.domain.forum.reply.dto.ReplyByMemberIdResponseDto;
 import com.d108.project.domain.forum.reply.dto.ReplyByPostIdResponseDto;
 import com.d108.project.domain.forum.reply.dto.ReplyCreateDto;
+import com.d108.project.domain.forum.reply.dto.ReplyUpdateDto;
 import com.d108.project.domain.forum.reply.repository.ReplyRepository;
 import com.d108.project.domain.member.domain.Member;
 import com.d108.project.domain.member.repository.MemberRepository;
@@ -58,5 +59,20 @@ public class ReplyServiceImpl implements ReplyService {
         return replyList.stream()
                 .map(ReplyByMemberIdResponseDto::from)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateReply(Integer replyId, ReplyUpdateDto replyUpdateDto) {
+        Reply reply = replyRepository.findById(replyId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 댓글입니다."));
+
+        reply.setContent(replyUpdateDto.getContent());
+
+        replyRepository.save(reply);
+    }
+
+    @Override
+    public void deleteReply(Integer replyId) {
+        replyRepository.deleteById(replyId);
     }
 }
