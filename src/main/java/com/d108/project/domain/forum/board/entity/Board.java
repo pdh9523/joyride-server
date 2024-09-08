@@ -9,11 +9,11 @@ import lombok.Getter;
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     // FIXME: 상권 (하나의 상권에 해당하는 하나의 게시판이 생기는 거 아님?)
-    private Integer businessAreaId;
+    private Long businessAreaId;
     // FIXME: 프랜차이즈 (이하 동일)
 
-    private Integer franchiseId;
+    private Long franchiseId;
 }

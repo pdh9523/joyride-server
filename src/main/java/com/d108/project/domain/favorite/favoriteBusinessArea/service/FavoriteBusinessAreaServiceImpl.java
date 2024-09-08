@@ -20,7 +20,7 @@ public class FavoriteBusinessAreaServiceImpl implements FavoriteBusinessAreaServ
     private BusinessAreaRepository businessAreaRepository;
 
     @Override
-    public FavoriteBusinessArea createFavoriteBusinessArea(Member member, Integer businessAreaId) {
+    public FavoriteBusinessArea createFavoriteBusinessArea(Member member, Long businessAreaId) {
         BusinessArea businessArea = businessAreaRepository.findById(businessAreaId).orElseThrow();
 
         FavoriteBusinessArea favorite = FavoriteBusinessArea.toFavoriteBusinessArea(member, businessArea);
@@ -28,12 +28,12 @@ public class FavoriteBusinessAreaServiceImpl implements FavoriteBusinessAreaServ
     }
 
     @Override
-    public void deleteFavoriteBusinessArea(Integer id) {
+    public void deleteFavoriteBusinessArea(Long id) {
         favoriteBusinessAreaRepository.deleteById(id);
     }
 
     @Override
-    public List<Integer> getFavoriteBusinessAreasByMember(Member member) {
+    public List<Long> getFavoriteBusinessAreasByMember(Member member) {
         return favoriteBusinessAreaRepository.findAllByMember(member)
                 .stream().map(FavoriteBusinessArea::getId).toList();
     }

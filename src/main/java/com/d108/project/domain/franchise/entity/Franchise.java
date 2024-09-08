@@ -17,7 +17,7 @@ import java.util.List;
 public class Franchise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     // 이름
     private String name;

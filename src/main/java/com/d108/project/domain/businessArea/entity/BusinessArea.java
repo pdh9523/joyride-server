@@ -17,7 +17,7 @@ import java.util.List;
 public class BusinessArea {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     
     // 주소
     private String name;

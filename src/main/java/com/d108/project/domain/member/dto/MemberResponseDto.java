@@ -9,7 +9,7 @@ import lombok.Getter;
 @Builder
 @AllArgsConstructor
 public class MemberResponseDto {
-    private Integer id;
+    private Long id;
     private String username;
     private String nickname;
 

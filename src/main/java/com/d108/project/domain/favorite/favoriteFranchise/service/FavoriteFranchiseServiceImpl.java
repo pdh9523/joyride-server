@@ -18,7 +18,7 @@ public class FavoriteFranchiseServiceImpl implements FavoriteFranchiseService {
     private FranchiseRepository franchiseRepository;
 
     @Override
-    public FavoriteFranchise createFavoriteFranchise(Member member, Integer franchiseId) {
+    public FavoriteFranchise createFavoriteFranchise(Member member, Long franchiseId) {
         Franchise franchise = franchiseRepository.findById(franchiseId).orElseThrow();
 
         FavoriteFranchise favoriteFranchise = FavoriteFranchise.toFavoriteFranchise(member, franchise);
@@ -27,7 +27,7 @@ public class FavoriteFranchiseServiceImpl implements FavoriteFranchiseService {
     }
 
     @Override
-    public void deleteFavoriteFranchise(Integer id) {
+    public void deleteFavoriteFranchise(Long id) {
         favoriteFranchiseRepository.deleteById(id);
     }
 

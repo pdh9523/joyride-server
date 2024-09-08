@@ -15,7 +15,7 @@ public class FavoriteBusinessArea {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;  // 관심상권 PK
+    private Long id;  // 관심상권 PK
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")

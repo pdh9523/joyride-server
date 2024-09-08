@@ -12,11 +12,11 @@ import java.util.List;
 public interface FavoriteBusinessAreaApi {
 
     @GetMapping("/list")
-    ResponseEntity<List<FavoriteBusinessAreasResponseDto>> getFavoriteBusinessAreasByMember(@RequestParam Integer memberId);
+    ResponseEntity<List<FavoriteBusinessAreasResponseDto>> getFavoriteBusinessAreasByMember(@RequestParam Long memberId);
 
     @DeleteMapping("{favoriteBusinessAreaId}")
-    ResponseEntity<Object> deleteFavoriteBusinessArea(@RequestParam Integer memberId, @PathVariable Integer favoriteBusinessAreaId);
+    ResponseEntity<Object> deleteFavoriteBusinessArea(@RequestParam Long memberId, @PathVariable Long favoriteBusinessAreaId);
 
     @PostMapping
-    ResponseEntity<Object> createFavoriteBusinessArea(@RequestParam Integer memberId, @RequestBody FavoriteBusinessAreaRequestDto favoriteBusinessAreaRequestDto);
+    ResponseEntity<Object> createFavoriteBusinessArea(@RequestParam Long memberId, @RequestBody FavoriteBusinessAreaRequestDto favoriteBusinessAreaRequestDto);
 }

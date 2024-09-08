@@ -5,10 +5,10 @@ import lombok.Builder;
 
 @Builder
 public class PostResponseDto {
-    private Integer id;
+    private Long id;
     private String title;
     private String content;
-    private Integer view;
+    private Long view;
 
     public static PostResponseDto from(Post post) {
         return PostResponseDto.builder()

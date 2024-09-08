@@ -28,7 +28,7 @@ public class PostServiceImpl implements PostService {
 
     // 글 작성
     @Override
-    public Integer createPost(PostCreateDto postCreateDto) {
+    public Long createPost(PostCreateDto postCreateDto) {
         Board board = boardRepository.findById(postCreateDto.getBoardId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 게시판입니다."));
 
@@ -59,7 +59,7 @@ public class PostServiceImpl implements PostService {
 
     // 단일 글 조회
     @Override
-    public PostResponseDto getPostById(Integer id) {
+    public PostResponseDto getPostById(Long id) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글 번호 입니다."));
         return PostResponseDto.from(post);
@@ -67,7 +67,7 @@ public class PostServiceImpl implements PostService {
 
     // 글 수정
     @Override
-    public void updatePostById(Integer postId, Integer memberId, PostUpdateDto postUpdateDto) {
+    public void updatePostById(Long postId, Long memberId, PostUpdateDto postUpdateDto) {
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글 번호 입니다."));
 
@@ -86,7 +86,7 @@ public class PostServiceImpl implements PostService {
     
     // 글 삭제
     @Override
-    public void deletePostById(Integer postId, Integer memberId) {
+    public void deletePostById(Long postId, Long memberId) {
         Post post = postRepository.findById(postId)
                         .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 글입니다."));
         Member member = memberRepository.findById(memberId)

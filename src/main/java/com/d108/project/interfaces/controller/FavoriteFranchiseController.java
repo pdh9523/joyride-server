@@ -22,17 +22,17 @@ public class FavoriteFranchiseController implements FavoriteFranchiseApi {
     private final FavoriteBusinessAreaService favoriteBusinessAreaService;
 
     @Override
-    public ResponseEntity<List<FavoriteFranchiseResponseDto>> getFavoriteFranchisesByMember(Integer memberId) {
+    public ResponseEntity<List<FavoriteFranchiseResponseDto>> getFavoriteFranchisesByMember(Long memberId) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> deleteFavoriteFranchise(Integer memberId, Integer favoriteFranchiseId) {
+    public ResponseEntity<Object> deleteFavoriteFranchise(Long memberId, Long favoriteFranchiseId) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> createFavoriteFranchise(Integer memberId, FavoriteFranchiseRequestDto favoriteFranchiseRequestDto) {
+    public ResponseEntity<Object> createFavoriteFranchise(Long memberId, FavoriteFranchiseRequestDto favoriteFranchiseRequestDto) {
         return null;
     }
 }

@@ -9,13 +9,13 @@ import java.util.List;
 
 public interface PostService {
 
-    Integer createPost(PostCreateDto postCreateDto);
+    Long createPost(PostCreateDto postCreateDto);
 
     List<PostResponseDto> getAllPosts();
 
-    PostResponseDto getPostById(Integer id);
+    PostResponseDto getPostById(Long id);
 
-    void updatePostById(Integer postId, Integer memberId, PostUpdateDto postUpdateDto);
+    void updatePostById(Long postId, Long memberId, PostUpdateDto postUpdateDto);
 
-    void deletePostById(Integer postId, Integer memberId);
+    void deletePostById(Long postId, Long memberId);
 }

@@ -12,11 +12,11 @@ import java.util.List;
 public interface FavoriteFranchiseApi {
 
     @GetMapping("/list")
-    ResponseEntity<List<FavoriteFranchiseResponseDto>> getFavoriteFranchisesByMember(@RequestParam Integer memberId);
+    ResponseEntity<List<FavoriteFranchiseResponseDto>> getFavoriteFranchisesByMember(@RequestParam Long memberId);
 
     @DeleteMapping("{favoriteFranchiseId}")
-    ResponseEntity<Object> deleteFavoriteFranchise(@RequestParam Integer memberId, @PathVariable Integer favoriteFranchiseId);
+    ResponseEntity<Object> deleteFavoriteFranchise(@RequestParam Long memberId, @PathVariable Long favoriteFranchiseId);
 
     @PostMapping
-    ResponseEntity<Object> createFavoriteFranchise(@RequestParam Integer memberId, @RequestBody FavoriteFranchiseRequestDto favoriteFranchiseRequestDto);
+    ResponseEntity<Object> createFavoriteFranchise(@RequestParam Long memberId, @RequestBody FavoriteFranchiseRequestDto favoriteFranchiseRequestDto);
 }

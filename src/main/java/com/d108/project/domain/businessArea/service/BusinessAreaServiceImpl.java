@@ -6,7 +6,7 @@ import java.util.List;
 
 public class BusinessAreaServiceImpl implements BusinessAreaService {
     @Override
-    public BusinessAreaListDto getBusinessAreaList(List<Integer> businessAreaIds) {
+    public BusinessAreaListDto getBusinessAreaList(List<Long> businessAreaIds) {
         return null;
     }
 }

@@ -16,7 +16,7 @@ import lombok.Setter;
 @Table(name = "replies")
 public class Reply extends BaseTimeEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")

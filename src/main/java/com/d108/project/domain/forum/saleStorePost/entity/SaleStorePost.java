@@ -19,7 +19,7 @@ public class SaleStorePost extends Post{
     private Long revenue;
 
     // 평수
-    private Integer size;
+    private Long size;
     // 주 연령층 (여기 타입 뭐씀?)
     @Enumerated(EnumType.STRING)
     private AgeGroup ageGroup;

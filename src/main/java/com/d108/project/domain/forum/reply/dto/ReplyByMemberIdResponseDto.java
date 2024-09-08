@@ -5,7 +5,7 @@ import lombok.Builder;
 
 @Builder
 public class ReplyByMemberIdResponseDto {
-    private Integer postId;
+    private Long postId;
     private String content;
 
     public static ReplyByMemberIdResponseDto from(Reply reply) {

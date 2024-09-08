@@ -14,7 +14,7 @@ public class FavoriteFranchise {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;  // 관심상권 PK
+    private Long id;  // 관심상권 PK
 
     @ManyToOne
     @JoinColumn(name = "member_id")

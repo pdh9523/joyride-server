@@ -6,7 +6,7 @@ import com.d108.project.domain.member.entity.Member;
 import java.util.List;
 
 public interface FavoriteBusinessAreaService {
-    FavoriteBusinessArea createFavoriteBusinessArea(Member member, Integer businessAreaId);
-    void deleteFavoriteBusinessArea(Integer id);
-    List<Integer> getFavoriteBusinessAreasByMember(Member member);
+    FavoriteBusinessArea createFavoriteBusinessArea(Member member, Long businessAreaId);
+    void deleteFavoriteBusinessArea(Long id);
+    List<Long> getFavoriteBusinessAreasByMember(Member member);
 }

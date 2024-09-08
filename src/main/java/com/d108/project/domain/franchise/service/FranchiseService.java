@@ -7,5 +7,5 @@ import java.util.List;
 
 @Service
 public interface FranchiseService {
-    FranchiseListDto getFranchiseList(List<Integer> FranchiseIds);
+    FranchiseListDto getFranchiseList(List<Long> FranchiseIds);
 }

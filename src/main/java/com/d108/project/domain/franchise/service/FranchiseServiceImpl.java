@@ -12,7 +12,7 @@ public class FranchiseServiceImpl implements FranchiseService {
     private final FranchiseRepository franchiseRepository;
 
     @Override
-    public FranchiseListDto getFranchiseList(List<Integer> franchiseIds) {
+    public FranchiseListDto getFranchiseList(List<Long> franchiseIds) {
         List<Franchise> franchises = franchiseRepository.findAllById(franchiseIds);
         return FranchiseListDto.to(franchises);
     }

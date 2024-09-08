@@ -19,7 +19,7 @@ import lombok.Setter;
 public class Post extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
@@ -31,7 +31,7 @@ public class Post extends BaseTimeEntity {
 
     private String title;
     private String content;
-    private Integer view;
+    private Long view;
 
     @Builder
     public Post(Board board, Member member, String title, String content) {
@@ -39,6 +39,6 @@ public class Post extends BaseTimeEntity {
         this.member = member;
         this.title = title;
         this.content = content;
-        this.view = 0;
+        this.view = 0L;
     }
 }

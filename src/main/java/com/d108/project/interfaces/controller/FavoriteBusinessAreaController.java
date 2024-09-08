@@ -9,17 +9,17 @@ import java.util.List;
 
 public class FavoriteBusinessAreaController implements FavoriteBusinessAreaApi {
     @Override
-    public ResponseEntity<List<FavoriteBusinessAreasResponseDto>> getFavoriteBusinessAreasByMember(Integer memberId) {
+    public ResponseEntity<List<FavoriteBusinessAreasResponseDto>> getFavoriteBusinessAreasByMember(Long memberId) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> deleteFavoriteBusinessArea(Integer memberId, Integer favoriteBusinessAreaId) {
+    public ResponseEntity<Object> deleteFavoriteBusinessArea(Long memberId, Long favoriteBusinessAreaId) {
         return null;
     }
 
     @Override
-    public ResponseEntity<Object> createFavoriteBusinessArea(Integer memberId, FavoriteBusinessAreaRequestDto favoriteBusinessAreaRequestDto) {
+    public ResponseEntity<Object> createFavoriteBusinessArea(Long memberId, FavoriteBusinessAreaRequestDto favoriteBusinessAreaRequestDto) {
         return null;
     }
 }

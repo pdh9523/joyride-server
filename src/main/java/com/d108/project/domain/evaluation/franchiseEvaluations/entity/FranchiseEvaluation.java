@@ -14,7 +14,7 @@ import lombok.ToString;
 public class FranchiseEvaluation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "franchise_id")

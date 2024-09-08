@@ -16,7 +16,7 @@ import lombok.Setter;
 public class LoginCredential extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String username;
     private String password;
