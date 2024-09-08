@@ -1,6 +1,6 @@
-package com.d108.project.domain.logincredential.repository;
+package com.d108.project.domain.loginCredential.repository;
 
-import com.d108.project.domain.logincredential.entity.LoginCredential;
+import com.d108.project.domain.loginCredential.entity.LoginCredential;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

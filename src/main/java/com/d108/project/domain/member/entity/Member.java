@@ -2,7 +2,7 @@ package com.d108.project.domain.member.entity;
 
 import com.d108.project.domain.favorite.favoriteBusinessArea.entity.FavoriteBusinessArea;
 import com.d108.project.domain.favorite.favoriteFranchise.entity.FavoriteFranchise;
-import com.d108.project.domain.logincredential.entity.LoginCredential;
+import com.d108.project.domain.loginCredential.entity.LoginCredential;
 import com.d108.project.domain.member.dto.MemberRegisterDto;
 import jakarta.persistence.*;
 import lombok.*;

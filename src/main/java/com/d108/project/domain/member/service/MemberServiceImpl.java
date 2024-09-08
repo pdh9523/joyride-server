@@ -1,8 +1,8 @@
 package com.d108.project.domain.member.service;
 
 
-import com.d108.project.domain.logincredential.entity.LoginCredential;
-import com.d108.project.domain.logincredential.repository.LoginCredentialRepository;
+import com.d108.project.domain.loginCredential.entity.LoginCredential;
+import com.d108.project.domain.loginCredential.repository.LoginCredentialRepository;
 import com.d108.project.domain.member.entity.Member;
 import com.d108.project.domain.member.dto.MemberLoginDto;
 import com.d108.project.domain.member.dto.MemberRegisterDto;

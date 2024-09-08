@@ -1,4 +1,4 @@
-package com.d108.project.domain.logincredential.entity;
+package com.d108.project.domain.loginCredential.entity;
 
 import com.d108.project.domain.global.BaseTimeEntity;
 import jakarta.persistence.*;
