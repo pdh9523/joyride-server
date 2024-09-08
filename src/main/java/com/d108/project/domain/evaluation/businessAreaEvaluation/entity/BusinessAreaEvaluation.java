@@ -23,10 +23,8 @@ public class BusinessAreaEvaluation {
     @JoinColumn(name = "business_area_id")
     private BusinessArea businessArea;
 
-    // 여기 타입 뭐씀?
     @Enumerated(EnumType.STRING)
     private AgeGroup ageGroup;
 
-    // FIXME: 여기 평가 점수 같은거 있어야 하는거 아님?
-
+    //TODO: 평가 점수 설정
 }
