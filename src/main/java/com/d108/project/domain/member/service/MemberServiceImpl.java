@@ -69,16 +69,7 @@ public class MemberServiceImpl implements MemberService {
         List<Member> members = memberRepository.findAll();
 
         return members.stream()
-                .map(this::convertToResponseDto)// DTO로 변환
+                .map(MemberResponseDto::from)// DTO로 변환
                 .collect(Collectors.toList());
-    }
-
-    // Member 객체를 MemberResponseDto로 변환하는 메서드
-    private MemberResponseDto convertToResponseDto(Member member) {
-        return MemberResponseDto.builder()
-                .id(member.getId())
-                .username(member.getUsername())
-                .nickname(member.getNickname())
-                .build();
     }
 }
